@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Applaudo.Core.Models
 {
+  /// <summary>
+  /// Datos de una persona
+  /// </summary>
   public class Persona
   {
     public int Id { get; set; }

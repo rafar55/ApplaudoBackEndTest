@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace Applaudo.Api.DTOS
 {
+  /// <summary>
+  /// Dto para enviar en los metodos de Insertar y de Actualizar personas
+  /// </summary>
   public class PersonaDto
   {
     [Required]

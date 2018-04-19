@@ -3,7 +3,7 @@
 namespace Applaudo.Core.Helpers
 {
   /// <summary>
-  /// Clase generica helper para regresar la informacion de cualquier operacion de paginacion
+  /// Clase genérica helper para regresar la información de paginado de cualquier entidad
   /// </summary>
   /// <typeparam name="TEntity"></typeparam>
   public class DataPager<TEntity>
@@ -16,11 +16,11 @@ namespace Applaudo.Core.Helpers
       Datos = datos;
     }
     /// <summary>
-    /// Muestra el total de resultados que se encontraron con ese filteo
+    /// Muestra el total de resultados que se encontraron con esos filtros
     /// </summary>
     public int TotalResultados { get; }
     /// <summary>
-    /// Los datos paginados
+    /// El listado de datos paginados
     /// </summary>
     public IReadOnlyList<TEntity> Datos { get; }
   }

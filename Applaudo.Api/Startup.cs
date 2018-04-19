@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Applaudo.Core.Implementaciones;
 using Applaudo.Core.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Applaudo.Api
 {
@@ -36,7 +40,26 @@ namespace Applaudo.Api
           opt.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
         });
 
-      //configuro algunas opciones personalidas del formater del json
+      //configuro el swagger para facilitar la documentacion de la api
+      services.AddSwaggerGen(opt =>
+      {
+        opt.SwaggerDoc("v1",
+          new Info()
+          {
+            Title = "Applaudo Studio Back-End Api Test",
+            Version = "v1",
+            Contact = new Contact() {Email = "rafa@bitworks.com.sv", Name = "Rafael Romero",Url = "http://solid.com.sv"},
+            Description = "Api sencilla de prueba creada con Asp.Net Core"
+          });
+
+        var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+        var xmlPathCore = Path.Combine(AppContext.BaseDirectory, "Applaudo.Core.xml");
+
+        opt.IncludeXmlComments(xmlPath);
+        opt.IncludeXmlComments(xmlPathCore);
+      });
     
 
       //Registro la implementacion del repositori en el DI container
@@ -50,6 +73,20 @@ namespace Applaudo.Api
       {
         app.UseDeveloperExceptionPage();
       }
+
+      //pongo el middleware para el json endpoint del swagger
+      app.UseSwagger();
+
+      //configuro el middleware para el UI del Swagger
+      app.UseSwaggerUI(opt =>
+      {
+         opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Applaudo Api Test");
+      });
+
+      //Hago que browser por default muestre el ui de Swagger
+      var option = new RewriteOptions();
+      option.AddRedirect("^$", "swagger");
+      app.UseRewriter(option);
 
       app.UseMvc();
     }
