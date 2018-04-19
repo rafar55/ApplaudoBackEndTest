@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,12 +27,14 @@ namespace Applaudo.Api.DTOS
     /// Cantidad de resultados desea que se regresen por pagina.
     /// (Si no se envia el parametro se usara 100 por default)
     /// </summary>
+    [Range(1,int.MaxValue)]
     public int Per_Page { get; set; }
 
     /// <summary>
     /// Pagina que desean consultar.
     /// (Si no se envia el parametro se tomara 1 por deault)
     /// </summary>
+    [Range(1,int.MaxValue)]
     public int Page { get; set; }
   }
 }

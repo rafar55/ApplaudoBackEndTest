@@ -28,10 +28,17 @@ namespace Applaudo.Api.Controllers
     /// <param name="filtros">Filtros y información para paginado</param>
     /// <returns></returns>
     [HttpGet]
-    public DataPager<Persona> Get([FromQuery] SearhDataPaginator filtros)
+    [Produces(typeof(DataPager<Persona>))]
+    public IActionResult Get([FromQuery] SearhDataPaginator filtros)
     {
+
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+
       var datos= _personasRepository.GetPaginado(filtros.Q, filtros.Per_Page, filtros.Page);
-      return datos;
+      return Ok(datos);
     }
 
     /// <summary>
