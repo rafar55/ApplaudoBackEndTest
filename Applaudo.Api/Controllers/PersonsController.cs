@@ -67,7 +67,7 @@ namespace Applaudo.Api.Controllers
       var modelo = ConvertirDtoAModel(datos);
 
       _personasRepository.AddNew(modelo);
-      return CreatedAtAction("Get", new {Id = modelo.Id}, datos);
+      return CreatedAtAction("Get", new {Id = modelo.Id}, modelo);
     }
 
     /// <summary>
