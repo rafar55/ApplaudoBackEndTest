@@ -74,6 +74,8 @@ namespace Applaudo.Api
         app.UseDeveloperExceptionPage();
       }
 
+    
+
       //pongo el middleware para el json endpoint del swagger
       app.UseSwagger();
 
