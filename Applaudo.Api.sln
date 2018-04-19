@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applaudo.Api", "Applaudo.Api\Applaudo.Api.csproj", "{87E4871D-EE7D-4710-B9B0-DC299241AD8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applaudo.Core", "Applaudo.Core\Applaudo.Core.csproj", "{A8086423-ADBF-4FD8-B148-0A4CCD53F38E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87E4871D-EE7D-4710-B9B0-DC299241AD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E4871D-EE7D-4710-B9B0-DC299241AD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E4871D-EE7D-4710-B9B0-DC299241AD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E4871D-EE7D-4710-B9B0-DC299241AD8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8086423-ADBF-4FD8-B148-0A4CCD53F38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8086423-ADBF-4FD8-B148-0A4CCD53F38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8086423-ADBF-4FD8-B148-0A4CCD53F38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8086423-ADBF-4FD8-B148-0A4CCD53F38E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {670D0EB7-F49C-40FB-96EB-7B839D3856CC}
+	EndGlobalSection
+EndGlobal
