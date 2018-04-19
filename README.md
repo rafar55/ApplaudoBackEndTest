@@ -4,7 +4,7 @@
  
  Para poder correr este proyecto se necesita descargar .NET Core https://www.microsoft.com/net/download/Windows/build. Si tiene Visual Studio 2017 actualizado podran abrir la solución sin problema.
 
-#Estructura de la Solución .Net
+# Estructura de la Solución .Net
 
 Generalmente en los sistemas que no son demasiado pequeños, siempre los trabajo con Dependency Injection y los divido en varias Class library. Antes de .net Core Utilizaba Ninject para manejar las Dependencia. Ahora Asp.net core ya tiene integrado un DI en en el framework.
 
