@@ -15,7 +15,7 @@ namespace Applaudo.Core.Implementaciones
     private static readonly List<Persona> MemoryDd=new List<Persona>()
     {
       new Persona(){Id = 1,FirstName = "Rafael",LastName = "Romero"},
-      new Persona(){Id = 2,FirstName = "Ernesto",LastName = "Guevara"}
+      new Persona(){Id = 2,FirstName = "Ernesto",LastName = "Guevara",Disabled = true}
     };
 
 
@@ -34,11 +34,13 @@ namespace Applaudo.Core.Implementaciones
     public DataPager<Persona> GetPaginado(string search,int cantXPagina=100,int pagina=1)
     {
 
+      if (search == null) search = string.Empty;
+
       if(pagina<=0) throw new ArgumentException("Tiene que ser superior a 0",nameof(pagina));
       if(cantXPagina<=0) throw new ArgumentException("Tiene que ser superior a 0",nameof(cantXPagina));
 
-      var query = MemoryDd.AsQueryable().Where(x =>
-        (x.FirstName + " " + x.LastName).Contains(search) || x.Id.ToString().Contains(search));
+      var query = MemoryDd.Where(x =>
+        (x.FirstName + " " + x.LastName).Contains(search) || x.Id.ToString().Contains(search)).AsQueryable();
      
 
       var cantidadSkip = (pagina - 1) * cantXPagina;
