@@ -36,11 +36,13 @@ namespace Applaudo.Core.Implementaciones
 
       if (search == null) search = string.Empty;
 
+      search = search.ToLower();
+
       if(pagina<=0) throw new ArgumentException("Tiene que ser superior a 0",nameof(pagina));
       if(cantXPagina<=0) throw new ArgumentException("Tiene que ser superior a 0",nameof(cantXPagina));
 
       var query = MemoryDd.Where(x =>
-        (x.FirstName + " " + x.LastName).Contains(search) || x.Id.ToString().Contains(search)).AsQueryable();
+        (x.FirstName + " " + x.LastName).ToLower().Contains(search) || x.Id.ToString().ToLower().Contains(search)).AsQueryable();
      
 
       var cantidadSkip = (pagina - 1) * cantXPagina;
@@ -63,14 +65,17 @@ namespace Applaudo.Core.Implementaciones
     {
       if(datos==null) throw new ArgumentException("No puede ser nulo");
 
-      if (MemoryDd.Any(x => x.Id == datos.Id))
-        throw new InvalidOperationException($"Ya existe una persona con el id {datos.Id} en la base de datos");
+      var idUtilizar = MemoryDd.Max(x => x.Id) + 1;
+      datos.Id = idUtilizar;
 
       MemoryDd.Add(datos);
     }
 
     public void Update(Persona datosActualizados)
     {
+
+      if(datosActualizados==null) throw new ArgumentException("No puede ser nulo",nameof(datosActualizados));
+
       var personaDb = GetById(datosActualizados.Id);
       if(personaDb==null) throw new InvalidOperationException($"No exite niguna persona con el id {datosActualizados.Id} en la base de datos");
 
